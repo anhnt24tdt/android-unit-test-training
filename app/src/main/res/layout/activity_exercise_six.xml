@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.training.ut.ui.excercise_six.ExerciseSixViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_total_purchased"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/exercise_six_total_money"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/edt_total_purchased"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_total_purchased"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/exercise_six_total_money_hint"
+            android:inputType="number"
+            android:maxLength="8"
+            android:text="@={ viewModel.totalPurchased + `` }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_underline"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_watch_movie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/exercise_six_watch_movie"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/view_underline_watch_movie"
+            app:layout_constraintEnd_toStartOf="@id/switch_voucher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_underline" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_voucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onCheckedChanged="@{(v, isChecked) -> viewModel.onWatchMovieChecked(isChecked)}"
+            app:layout_constraintBottom_toTopOf="@id/view_underline_watch_movie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_underline" />
+
+        <View
+            android:id="@+id/view_underline_watch_movie"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_watch_movie" />
+
+        <TextView
+            android:id="@+id/text_condition_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/header_condition"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_underline_watch_movie" />
+
+        <TextView
+            android:id="@+id/text_condition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/exercise_six_condition"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_condition_header" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_total_free_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/exercise_six_free_parking_minute"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_condition" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_calculate_free_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{() -> viewModel.calculateMinute()}"
+            android:text="@string/calculate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_total_free_minute" />
+
+        <TextView
+            android:id="@+id/text_total_free_minute_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{ (viewModel.freeParkingInMinute == null ? 0 : viewModel.freeParkingInMinute) + `` }"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_total_free_minute"
+            app:layout_constraintVertical_bias="0"
+            tools:text="120" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

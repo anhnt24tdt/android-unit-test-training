@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.training.ut.ui.exercise_nine.ExerciseNineViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.exercise_nine.ExerciseNineActivity">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/exercise_9_title"
+                android:textAlignment="center"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchMagicWand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:onCheckedChanged="@{(v, isChecked) -> viewModel.onMagicWandChecked(isChecked)}"
+                android:text="@string/magic_wand"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchMaster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:onCheckedChanged="@{(v, isChecked) -> viewModel.onMasterChecked(isChecked)}"
+                android:text="@string/master"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:onCheckedChanged="@{(v, isChecked) -> viewModel.onKeyChecked(isChecked)}"
+                android:text="@string/room_key"
+                app:layout_constraintEnd_toEndOf="@id/switchMagicWand"
+                app:layout_constraintTop_toBottomOf="@id/switchMagicWand" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchLightSword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:onCheckedChanged="@{(v, isChecked) -> viewModel.onLightSwordChecked(isChecked)}"
+                android:text="@string/light_sword"
+                app:layout_constraintEnd_toEndOf="@id/switchMaster"
+                app:layout_constraintTop_toBottomOf="@id/switchMaster" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCondition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:padding="@dimen/dp_20"
+                android:text="@string/exercise_nine_condition"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switchKey" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonGo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_40"
+                android:background="@color/colorAccent"
+                android:onClick="@{() -> viewModel.checkResultExerciseNine()}"
+                android:padding="@dimen/dp_16"
+                android:text="@string/go"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCondition" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:padding="@dimen/dp_20"
+                app:result="@{viewModel.resultBeatBoss}"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonGo"
+                tools:text="@string/beat_boss" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

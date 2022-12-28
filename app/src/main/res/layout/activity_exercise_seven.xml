@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.training.ut.ui.exercise_seven.ExerciseSevenViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.exercise_seven.ExerciseSevenActivity">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Tiền hàng:"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/edt_number"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_number"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Money"
+                android:inputType="number"
+                android:text="@={viewModel.money + `` }"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_underline"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Giao hàng siêu tốc:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/view_underline_fast_shipping"
+                app:layout_constraintEnd_toStartOf="@id/switch_fast_shipping"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_underline" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_fast_shipping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onCheckedChanged="@{(v, isChecked) -> viewModel.onFastShippingChecked(isChecked)}"
+                app:layout_constraintBottom_toTopOf="@id/view_underline_fast_shipping"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_underline" />
+
+            <View
+                android:id="@+id/view_underline_fast_shipping"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_fast_shipping" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Premium:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/view_underline_price_beer"
+                app:layout_constraintEnd_toStartOf="@id/switch_premium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_underline_fast_shipping" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_premium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onCheckedChanged="@{(v, isChecked) -> viewModel.onPremiumChecked(isChecked)}"
+                app:layout_constraintBottom_toTopOf="@id/view_underline_price_beer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_underline_fast_shipping" />
+
+            <View
+                android:id="@+id/view_underline_price_beer"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_premium" />
+
+            <TextView
+                android:id="@+id/txt_condition_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/header_condition"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_underline_price_beer" />
+
+            <TextView
+                android:id="@+id/txt_condition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/condition_7"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_condition_header" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/total_pee"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_condition" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:onClick="@{() -> viewModel.calculateFee()}"
+                android:text="@string/calculate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/total" />
+
+            <TextView
+                android:id="@+id/total_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="30sp"
+                android:visibility="@{ viewModel.isErrorLiveData ? View.GONE : View.VISIBLE }"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total"
+                app:layout_constraintVertical_bias="0"
+                app:price="@{viewModel.feeLiveData}" />
+
+            <TextView
+                android:id="@+id/total_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Money need greater 0!"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="16sp"
+                android:visibility="@{ viewModel.isErrorLiveData ? View.VISIBLE : View.GONE }"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total"
+                app:layout_constraintVertical_bias="0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

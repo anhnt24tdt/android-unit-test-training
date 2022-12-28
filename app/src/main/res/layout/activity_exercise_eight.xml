@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.training.ut.ui.exercise_eight.ExerciseEightViewModel" />
+
+        <import type="com.sun.training.ut.data.Constant.Gender" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_age"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/age"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <NumberPicker
+            android:id="@+id/picker_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
+            android:descendantFocusability="blocksDescendants"
+            android:onValueChange="@{ (picker, oldVal, newVal) -> viewModel.ageChanged(newVal) }"
+            app:layout_constraintStart_toStartOf="@id/text_age"
+            app:layout_constraintTop_toBottomOf="@id/text_age" />
+
+        <TextView
+            android:id="@+id/text_gender"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/gender"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintStart_toStartOf="@+id/text_age"
+            app:layout_constraintTop_toBottomOf="@id/picker_age" />
+
+        <RadioGroup
+            android:id="@+id/radio_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/text_gender"
+            app:layout_constraintTop_toBottomOf="@id/text_gender">
+
+            <RadioButton
+                android:id="@+id/radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{ viewModel.member.gender == Gender.MALE}"
+                android:onCheckedChanged="@{ (button, isChecked) -> viewModel.genderChangedMale(isChecked) }"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:checked="@{ viewModel.member.gender == Gender.FEMALE}"
+                android:onCheckedChanged="@{ (button, isChecked) -> viewModel.genderChangedFemale(isChecked) }"
+                android:text="@string/female" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/text_weekday"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/day_of_week"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintStart_toStartOf="@+id/text_gender"
+            app:layout_constraintTop_toBottomOf="@id/radio_gender" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_8"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_weekday"
+            app:layout_constraintTop_toBottomOf="@id/text_weekday" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_0_4"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view" />
+
+        <TextView
+            android:id="@+id/label_fee"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_4"
+            android:text="@string/fee"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintEnd_toStartOf="@+id/text_fee"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <TextView
+            android:id="@+id/text_fee"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_40"
+            android:text="@{ viewModel.fee + `` }"
+            android:textColor="@color/red_1"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/label_fee" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
